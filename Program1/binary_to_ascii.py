@@ -32,7 +32,10 @@ def BinaryDecode(code, bit):
 
 def main():
     inp = sys.stdin.read()
+    print("Seven bit output: ")
     BinaryDecode(inp, 7)
+    print()
+    print("Eight bit output: ")
     BinaryDecode(inp, 8)
 
 main()
