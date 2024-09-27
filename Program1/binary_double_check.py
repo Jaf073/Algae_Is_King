@@ -13,20 +13,21 @@ def BinaryDecode(code, bit):
 
     # iterates through the entire array while 
     # repeatedly building chunks of size bit
+    # FIXME: I think this breaks if the last chunk of digits is smaller than the bit size
     while index < len(ar):
         tempstr += ar[index]
         index += 1
         group += 1
         if group >= bit: # this means tempstr is ready to convert
-            decrypted += "".join([chr(int(tempstr, 2))]) # we cast the string to an int, then the int to it's respective char
-            
+            #decrypted += "".join(ar[int(tempstr, 2)]) # we cast the string to an int, then the int to it's respective char
+            print("Binary string: " + tempstr + " \nDecimal value: " + str(int(tempstr, 2)) +"\nAscii: " + chr(int(tempstr, 2)))
             # we clear temstr and group to start again
             tempstr = ""
             group = 0
     
     # we merge the array to a string and print it
-    printstr = "".join(decrypted)
-    print(printstr)
+    #printstr = "".join(decrypted)
+    #print(printstr)
 
 def main():
     inp = sys.stdin.read()
