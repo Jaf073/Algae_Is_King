@@ -35,7 +35,8 @@ def Decrypt_Vig(msg, key):
     decrypted_text = []
     #make key the same length as msg
     key = generate_key(msg, key)
-    #find character on chart using key and msg as coords for i in range(len(msg)):
+    #find character on chart using key and msg as coords 
+    for i in range(len(msg)):
         char = msg[i]
         if char.isupper():
             decrypted_char = chr((ord(char) - ord(key[i]) + 26) % 26 + ord('A'))
