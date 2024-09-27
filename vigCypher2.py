@@ -1,6 +1,6 @@
 import sys
 
-# mostly from mr feet
+# mostly from John Feet
 def genKey(msg):
     key = sys.argv[2]
 
