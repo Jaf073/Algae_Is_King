@@ -72,5 +72,6 @@ def main():
             if intent == "-d":
                 print(Decrypt_Vig(message, key))
     except KeyboardInterrupt:
-        print("^C")
+        print("\n")
+        exit(0)
 main()
