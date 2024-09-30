@@ -61,14 +61,16 @@ def main():
     # find out if user wants to encrypt or decrypt
     intent = sys.argv[1]
 
-    # runs the code until keyboard interrupt and encrypts/decrypts anything the user types
-    while True:
-        message = input("")
-        key = generate_key(message)
-        
-        if intent == "-e":
-            print(Encrypt_Vig(message, key))
-        if intent == "-d":
-            print(Decrypt_Vig(message, key))
-
+    # runs the code in a try-except block until keyboard interrupt and encrypts/decrypts anything the user types
+    try:
+        while True:
+            message = input("")
+            key = generate_key(message)
+            
+            if intent == "-e":
+                print(Encrypt_Vig(message, key))
+            if intent == "-d":
+                print(Decrypt_Vig(message, key))
+    except KeyboardInterrupt:
+        print("^C")
 main()
