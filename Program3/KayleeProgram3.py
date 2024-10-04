@@ -7,7 +7,7 @@ USER = "anonymous"
 PASSWORD = ""
 FOLDER = "/10/"
 METHOD = 10
-USE_PASSIVE = True #set to False if the connection times out
+USE_PASSIVE = False  #set to False if the connection times out
 DEBUG = False
 
 ###### Main #######
