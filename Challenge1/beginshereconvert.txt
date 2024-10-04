@@ -17,3 +17,6 @@ pass:    wulusaugu
 Of course, the actual username and password must be decrypted to login
 properly. They were both encrypted the same number of times using
 vigenere cipher with the following key: "cyberstorm"
+
+converted user 5 times: jonastaylor
+converter pass 5 times: megalodon
