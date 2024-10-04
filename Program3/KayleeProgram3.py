@@ -1,7 +1,7 @@
 from ftplib import FTP
 
 # some ftp details
-IP = "localhost"
+IP = "138.47.99.83"
 PORT = 21
 USER = "anonymous"
 PASSWORD = ""
