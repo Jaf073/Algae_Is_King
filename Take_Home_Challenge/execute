@@ -1,0 +1,4 @@
+python3 webScraper.py > info
+python3 infoGather.py > finished
+rm info
+open finished
