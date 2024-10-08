@@ -1,7 +1,7 @@
 import re
 
 def infoGather(keywords):
-    # iterates through info file and looks for keywords in continuous text
+    # iterates through info file and looks for keywords in a text document
     with open("info", "r") as info:
         # chatgpt helped with this part
         for lineNumber, line in enumerate(info):
