@@ -16,8 +16,15 @@ def scraper(url):
 
 def main():
     # website that the scraper goes though
-    website = "https://coes.latech.edu/facultystaff-directory/"
-
-    scraper(website)
+    coes = "https://coes.latech.edu/facultystaff-directory/"
+    ans = "https://ans.latech.edu/faculty-staff-directory/"
+    cehs = "https://education.latech.edu/academic-programs/psychology-behavioral-sciences/staff-faculty-directory/"
+    cla = "https://liberalarts.latech.edu/faculty-staff-directory/"
     
+
+    scraper(coes)
+    scraper(ans)
+    scraper(cehs)
+    scraper(cla)
+
 main()
