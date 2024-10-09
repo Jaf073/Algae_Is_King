@@ -4,6 +4,11 @@ made by the footman at 8:46pm 10/8/24
 '''
 
 '''Modify the names into pretty String'''
+# includes needed for email sending
+from email.message import EmailMessage
+import ssl
+import smtplib
+
 def getName(name):
     #Find first Dash to split string into First and Last name
     Dash = name.index('-')
@@ -45,4 +50,33 @@ def splitInfo(filename):
                 nameDict[name] = email
     return(nameDict)
                     
-print(splitInfo('finished'))
+nameDict = splitInfo('finished')
+
+# email variable setup
+emailSender = ''
+senderPass = '' # note that this needs an app password, not the literal password
+subject = 'This is a test email subject'
+body = """
+This is a test email body
+oooooh crazy
+third line
+"""
+
+# email class setup (continued within loop)
+email = EmailMessage()
+email['From'] = emailSender
+email['Subject'] = subject
+email.set_content(body)
+context = ssl.create_default_context()
+
+with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+    smtp.login(emailSender, senderPass)
+
+for name, emailVictim in nameDict.items():
+    # string formatting goes here
+
+
+    # DO NOT UNCOMMENT THIS LINE OF CODE
+    # THE EMAILS WILL SEND IF YOU RUN THIS
+    # (with valid credentials in the emailSender & emailPass variables
+    #smtp.sendmail(emailSender, emailVictim, email.as_string())
