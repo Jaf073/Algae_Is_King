@@ -45,4 +45,4 @@ def splitInfo(filename):
                 nameDict[name] = email
     return(nameDict)
                     
-print(splitInfo('finished.txt'))
+print(splitInfo('finished'))
