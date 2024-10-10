@@ -2,9 +2,9 @@ from email.message import EmailMessage
 import ssl
 import smtplib
 
-emailSender = 'haydenbrimage@gmail.com' # put your own here while testing
+emailSender = '' # put your own here while testing
 
-senderPass = 'memg vsbp xtyu jnjg'  # NOTE: You want to use something called an "app password" for this field, it's something that you can set up with gmails ONLY if you have two factor authentication enabled
+senderPass = ''  # NOTE: You want to use something called an "app password" for this field, it's something that you can set up with gmails ONLY if you have two factor authentication enabled
 # obviously don't leave this filled in when you push to git
 
 emailVictim = '' # put somebody you don't like here while testing
