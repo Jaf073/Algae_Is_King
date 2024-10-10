@@ -9,7 +9,7 @@ senderPass = 'memg vsbp xtyu jnjg'  # NOTE: You want to use something called an 
 
 emailVictim = '' # put somebody you don't like here while testing
 
-Dic = {('Andrew', 'alr051@latech.edu'), ('Kaylee', 'kma072@latech.edu'), ('Hayden', 'hpr016@latech.edu'), ('John'< 'jaf073@latech.edu'), ('Tommy', 'tpw006@email.latech.edu'), ('Tim', 'tcf006@latech.edu'), ('Gabe', 'gat015@latech.edu'), ('Anky', 'kiremire@latech.edu')}
+Dic = {'Andrew':'alr051@latech.edu', 'Kaylee':'kma072@latech.edu', 'Hayden':'hpr016@latech.edu', 'John':'jaf073@latech.edu', 'Tommy':'tpw006@email.latech.edu', 'Tim':'tcf006@latech.edu', 'Gabe':'gat015@latech.edu', 'Anky':'kiremire@latech.edu'}
 
 with open('email_template.txt', 'r') as file:
           email_template = file.read()
