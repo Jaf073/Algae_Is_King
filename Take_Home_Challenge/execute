@@ -1,3 +1,2 @@
-python3 webScraper.py > info && python3 infoGather.py > finished
-python3 infoSplit.py && python3 testEmailSend.py
-rm info && rm finished
+python3 webScraper.py > info && python3 infoGather.py > finished.txt && python3 splitInfo_02.py && python3 testEmailSend.py
+rm info
