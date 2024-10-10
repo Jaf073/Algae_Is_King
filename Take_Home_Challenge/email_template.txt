@@ -1,7 +1,6 @@
-Subject: Better Pay Up!
-From: fakeemail@email.com
-
-This is a test email body.
+THIS IS A FICTIONALIZED PHISHING EMAIL MADE FOR A CYBER SECURITY CLASS
+IF YOU ARE READING THIS, A STUDENT HAS SENT THE EMAIL BY MISTAKE
+PLEASE DISREGARD
 
 Dear [target],
 
