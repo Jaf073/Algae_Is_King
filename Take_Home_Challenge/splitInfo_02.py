@@ -61,7 +61,7 @@ def splitInfo(filename):
     print(sets)
     return(nameDict1, nameDict2, nameDict3)
 
-Dic1, Dic2, Dic3 = splitInfo('finished.txt')
+Dic1, Dic2, Dic3 = splitInfo('finished')
 print(Dic1)
 print("---------------")
 print(Dic2)
