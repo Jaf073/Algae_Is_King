@@ -1,1 +1,2 @@
 1. We ran the zip file into lostmypass.com, which return a password of "passw0rd"
+2. Kaylee, Tim, and Tommy found an ftp password by reverse engineering 1.exe
