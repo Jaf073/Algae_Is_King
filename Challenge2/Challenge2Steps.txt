@@ -3,4 +3,5 @@
 3. We logged into the ftp with anonymous and used program 3 in folder 7 to get an ftp user and password
 4. We then downloaded the 2.exe and Hint.class files from the ftp
 5. We changed a jump within 2.exe using cutter to force a password from the file
-6. As of now we're trying to reflect Hint.class
+6. Using java reflection, ran the setlength function of Hint.class with a parameter of 1000
+7. We then ran the Hint function, which returned a larged instructional body of text
