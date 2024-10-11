@@ -1,0 +1,6 @@
+1. We ran the zip file into lostmypass.com, which return a password of "passw0rd"
+2. Kaylee, Tim, and Tommy found an ftp ip adress by reverse engineering 1.exe
+3. We logged into the ftp with anonymous and used program 3 in folder 7 to get an ftp user and password
+4. We then downloaded the 2.exe and Hint.class files from the ftp
+5. We changed a jump within 2.exe using cutter to force a password from the file
+6. As of now we're trying to reflect Hint.class
