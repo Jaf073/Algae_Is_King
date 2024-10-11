@@ -1,0 +1,1 @@
+1. We ran the zip file into lostmypass.com, which return a password of "passw0rd"
