@@ -1,0 +1,111 @@
+from hashlib import sha256
+
+def Bruh(lis = []):
+    password = "1b568753dbd11c8fd64489fe8f8b71c1b07ea48e5584b4d2307f9642d1b3bbca"
+    for x in lis: #iterate through all numbers 0-9 for two digits along with all names
+        for y in lis: 
+            for i in range(10):
+                for j in range(10): #THIS IS LITERLLY 1 MIL COMBINATIONS WHY ANKY? WHY?
+                    tempname = x + str(i) + str(j) + y #Combine the two strings
+                    print(tempname) #print names for debug
+                    hashed = sha256(tempname.encode('utf-8')).hexdigest()
+                    #print(hashed) #print hashed for debug
+                    if hashed == password: #see if hashed combination is == to pswd
+                        return tempname #return the combination
+
+    return("failed") #nothings worked = shit
+
+List = ["123456","password","12345678","qwerty","123456789","12345","1234","111111","1234567","dragon","123123",
+"baseball",
+"abc123",
+"football",
+"monkey",
+"letmein",
+"696969",
+"shadow",
+"master",
+"666666",
+"qwertyuiop",
+"123321",
+"mustang",
+"1234567890",
+"michael",
+"654321",
+"pussy",
+"superman",
+"1qaz2wsx",
+"7777777",
+"fuckyou",
+"121212",
+"000000",
+"qazwsx",
+"123qwe",
+"killer",
+"trustno1",
+"jordan",
+"jennifer",
+"zxcvbnm",
+"asdfgh",
+"hunter",
+"buster",
+"soccer",
+"harley",
+"batman",
+"andrew",
+"tigger",
+"sunshine",
+"iloveyou",
+"fuckme",
+"2000",
+"charlie",
+"robert",
+"thomas",
+"hockey",
+"ranger",
+"daniel",
+"starwars",
+"klaster",
+"112233",
+"george",
+"asshole",
+"computer",
+"michelle",
+"jessica",
+"pepper",
+"1111",
+"zxcvbn",
+"555555",
+"11111111",
+"131313",
+"freedom",
+"777777",
+"pass",
+"fuck",
+"maggie",
+"159753",
+"aaaaaa",
+"ginger",
+"princess",
+"joshua",
+"cheese",
+"amanda",
+"summer",
+"love",
+"ashley",
+"6969",
+"nicole",
+"chelsea",
+"biteme",
+"matthew",
+"access",
+"yankees",
+"987654321",
+"dallas",
+"austin",
+"thunder",
+"taylor",
+"matrix",
+"minecraft"]
+
+#print(List)
+print(Bruh(List))
