@@ -12,6 +12,7 @@ def scraper(url):
         href = link.get("href")
         if href:
             print(href)
+
     
 
 def main():
@@ -23,8 +24,12 @@ def main():
     
 
     scraper(coes)
+    print("coes_end")
     scraper(ans)
+    print("ans_end")
     scraper(cehs)
+    print("cechs_end")
     scraper(cla)
+    print("cla_end")
 
 main()

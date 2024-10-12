@@ -10,6 +10,15 @@ def infoGather(keywords):
                     startIndex = max(match.start() - 1, 0)
                     endIndex = min(match.end() + 20, len(line))
                     
+                    if match == "coes_end":
+                        print("coes_end")
+                    if match == "ans_end":
+                        print("ans_end")
+                    if match == "cechs_end":
+                        print("cechs_end")
+                    if match == ("cla_end"):
+                        print("cla_end")
+
                     # gets the name and email after keyword
                     name_and_email = line[startIndex:endIndex]
                     
@@ -18,7 +27,7 @@ def infoGather(keywords):
 
 def main():
     # sets keywords to look for
-    keywords = ["name", "mailto"]
+    keywords = ["name", "mailto", "coes_end", "ans_end", "cechs_end", "cla_end"]
     
     infoGather(keywords)
 
