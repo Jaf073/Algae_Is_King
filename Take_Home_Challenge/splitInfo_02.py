@@ -74,7 +74,7 @@ def splitInfo(filename):
             elif line.startswith('mailto'):
                 email = getEmail(line[7:])
                 nameDicts[currentDict][name] = email  # Add to current dictionary
-            elif line in ['coes_end', 'ans_end', 'cechs_end', 'cla_end']:
+            elif line in ['ans_end', 'cechs_end', 'cla_end', 'coes_end']:
                 currentDict += 1  # Move to the next dictionary
 
             # Ensure we do not exceed the number of dictionaries

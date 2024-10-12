@@ -23,13 +23,13 @@ def main():
     cla = "https://liberalarts.latech.edu/faculty-staff-directory/"
     
 
-    scraper(coes)
-    print("coes_end")
     scraper(ans)
     print("ans_end")
     scraper(cehs)
     print("cechs_end")
     scraper(cla)
     print("cla_end")
+    scraper(coes)
+    print("coes_end")
 
 main()
