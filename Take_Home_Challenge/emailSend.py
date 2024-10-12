@@ -1,7 +1,7 @@
 from email.message import EmailMessage
 import ssl
 import smtplib
-from splitInfo_02 import splitInfo
+from splitInfo import splitInfo
 
 emailSender = '' # put your own here while testing
 
