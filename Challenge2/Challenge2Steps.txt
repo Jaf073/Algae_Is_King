@@ -5,3 +5,31 @@
 5. We changed a jump within 2.exe using cutter to force a password from the file
 6. Using java reflection, ran the setlength function of Hint.class with a parameter of 1000
 7. We then ran the Hint function, which returned a larged instructional body of text
+8. We used a python script called Pass_Crack.py which combined the top 100 most common passwords into a combination of 2 words with 2 integers in between them to find the password for the encrypted pdf.
+
+
+Contribution:
+Kaylee: 
+Logged into the ftp server and navigated, also used program 3 to find the user and password needed to get into the correct ftp. 
+
+Andrew:
+Helped search ftp server, Also helped cutter 2.exe.
+
+Tim:
+Wrote javaReflection program to find the supersecretfunction and the message. Used cutter to find the ip for the ftp server.
+
+Hayden:
+I found the zip file's password using lostmypass.com, I helped find 2.exe and Hint.java, and I maintained the git throughout the challenge 
+
+Tommy:
+Used Kaylee's Program 3 to accesss the ftp server and decode the permissions of the files. Used a javaReflection program to change the length parameter in the secret function to get the message.
+
+John:
+John navigated throught the ftp server using ls -al to find the hidden directories which lead to 2.exe and Hint.class.
+He also wrote Pass_Crack.py to get the password for final.pdf using the database from the top 100 passwords on github and the encrypted password from the .exe
+
+Gabe:
+This challenge I was not able to contribute as much as I would have liked because I had some problems with my VM
+and with my computer deleting the 1.exe file. When I was able to get it working properly I helped look through
+the 1.exe file for a password. I also helped log into the ftp server once the IP was found in the 1.exe file.
+
