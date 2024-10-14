@@ -2,13 +2,9 @@
 ooohhh fancy credits up here ooohhhh
 made by the footman at 8:46pm 10/8/24
 '''
+import sys
 
 '''Modify the names into pretty String'''
-# includes needed for email sending
-from email.message import EmailMessage
-import ssl
-import smtplib
-
 def getName(name):
     #Find first Dash to split string into First and Last name
     Dash = name.index('-')
@@ -33,50 +29,67 @@ def getName(name):
     return newName
 
 def getEmail(email):
-    stop = email.index("\n")
-    return(email[:stop])
+    #stop = email.index("\n")
+    #return(email[:stop])
+    return email.strip()
                        
 '''Open Folder and Split information into emails and names'''
 def splitInfo(filename):
-    nameDict = {}
+    nameDicts = [{} for _ in range(5)]
+    currentDict = 0
+
+    #count = 0
+    #sets = 0
+    #nameDict1 = {}
+    #nameDict2 = {}
+    #nameDict3 = {}
+    
+#    with open(filename) as f:
+#        for x, line in enumerate(f, start=0): #enumerate file into #strings
+#            if line[:6] == '/name/': #Check if string is a name
+#                name = getName(line[6:])
+#            elif line[:6] == 'mailto': #Check if string is emal
+#                email = getEmail(line[7:])
+#                    
+#                #If we have the email, we have the name
+#                if (len(nameDict1) <= 150):
+#                    nameDict1[name] = email
+#                elif (len(nameDict2) <= 150):
+#                    nameDict2[name] = email
+#                else:
+#                    nameDict3[name] = email
+#                sets += 1
+#                    
+#            count += 1
+#    print(count)
+#    print(sets)
+#    return(nameDict1, nameDict2, nameDict3)
+
     with open(filename) as f:
-        for x, line in enumerate(f, start=0): #enumerate file into strings
-            if line[:6] == '/name/': #Check if string is a name
+        for line in f:
+            line = line.strip()  # Remove leading/trailing whitespace
+
+            if line.startswith('/name/'):
                 name = getName(line[6:])
-            elif line[:6] == 'mailto': #Check if string is emal
+            elif line.startswith('mailto'):
                 email = getEmail(line[7:])
-                    
-                #If we have the email, we have the name
-                nameDict[name] = email
-    return(nameDict)
-                    
-nameDict = splitInfo('finished')
+                nameDicts[currentDict][name] = email  # Add to current dictionary
+            elif line in ['ans_end', 'cechs_end', 'cla_end', 'coes_end']:
+                currentDict += 1  # Move to the next dictionary
 
-# email variable setup
-emailSender = ''
-senderPass = '' # note that this needs an app password, not the literal password
-subject = 'This is a test email subject'
-body = """
-This is a test email body
-oooooh crazy
-third line
-"""
+            # Ensure we do not exceed the number of dictionaries
+            if currentDict >= len(nameDicts):
+                break
 
-# email class setup (continued within loop)
-email = EmailMessage()
-email['From'] = emailSender
-email['Subject'] = subject
-email.set_content(body)
-context = ssl.create_default_context()
+    return tuple(nameDicts)
 
-with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
-    smtp.login(emailSender, senderPass)
-
-for name, emailVictim in nameDict.items():
-    # string formatting goes here
-
-
-    # DO NOT UNCOMMENT THIS LINE OF CODE
-    # THE EMAILS WILL SEND IF YOU RUN THIS
-    # (with valid credentials in the emailSender & emailPass variables
-    #smtp.sendmail(emailSender, emailVictim, email.as_string())
+Dic1, Dic2, Dic3, Dic4, Dic5 = splitInfo('finished')
+print(Dic1)
+print("---------------")
+print(Dic2)
+print("---------------")
+print(Dic3)
+print("---------------")
+print(Dic4)
+print("---------------")
+print(Dic5)

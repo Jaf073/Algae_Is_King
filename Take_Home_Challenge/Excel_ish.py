@@ -1,7 +1,4 @@
-'''
-ooohhh fancy credits up here ooohhhh
-made by the footman at 8:46pm 10/8/24
-'''
+from openpyxl import load_workbook
 import sys
 
 '''Modify the names into pretty String'''
@@ -61,9 +58,34 @@ def splitInfo(filename):
     print(sets)
     return(nameDict1, nameDict2, nameDict3)
 
-Dic1, Dic2, Dic3 = splitInfo('finished.txt')
-print(Dic1)
-print("---------------")
-print(Dic2)
-print("---------------")
-print(Dic3)
+Dic1, Dic2, Dic3 = splitInfo('finished')
+
+#DOING THE EXCEL SHEET
+output_file_name = 'Bruh.xlsx'
+
+wb = load_workbook(output_file_name, data_only=True)
+ws = wb['Sheet1']
+print("opened workbook")
+
+i = 1
+for x,y in Dic1.items():
+    ws.cell(i,1).value = (x)
+    ws.cell(i,2).value = (y)
+    i +=1 
+for x,y in Dic2.items():
+    ws.cell(i,1).value = (x)
+    ws.cell(i,2).value = (y)
+    i +=1
+for x,y in Dic3.items():
+    ws.cell(i,1).value = (x)
+    ws.cell(i,2).value = (y)
+    i +=1 
+
+ws.cell(3,3).value = ("Balls")
+
+print("edited cells")
+
+wb.save(output_file_name)
+wb.close()
+
+print("closed workbook")

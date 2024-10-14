@@ -1,0 +1,2 @@
+John navigated throught the ftp server using ls -al to find the hidden directories which lead to 2.exe and Hint.class.
+He also wrote Pass_Crack.py to get the password for final.pdf using the database from the top 100 passwords on github and the encrypted password from the .exe

@@ -12,6 +12,7 @@ def scraper(url):
         href = link.get("href")
         if href:
             print(href)
+
     
 
 def main():
@@ -22,9 +23,13 @@ def main():
     cla = "https://liberalarts.latech.edu/faculty-staff-directory/"
     
 
-    scraper(coes)
     scraper(ans)
+    print("ans_end")
     scraper(cehs)
+    print("cechs_end")
     scraper(cla)
+    print("cla_end")
+    scraper(coes)
+    print("coes_end")
 
 main()
