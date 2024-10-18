@@ -42,7 +42,7 @@ s.connect((IPADDRESS, PORT))
 # receive data
 data = s.recv(4096).decode()
 binary = ""
-delta = 1;
+delta = 1
 while (data.rstrip("\n") != "EOF" and delta != 0):
     stdout.write(data)
     stdout.flush()
