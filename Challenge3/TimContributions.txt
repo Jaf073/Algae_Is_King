@@ -1,0 +1,1 @@
+Used an online vigenere decoder on the encrypted message, but wasn't able to get the proper output. Tried to use FTP to get the message to print out, but my FTP/IP are messed up I think. Also ran the contents of newBinary through the binary_to_ascii.py program to try and find anything.
