@@ -1,26 +1,24 @@
 import sys
 
-def xor():
-    # Read key from key file as bineary
-    f = open("key", 'r')
-    key = f.read()
-    # key = '0101'
+# Read key from key file as bineary
+f = open('key2-1', 'rb')
+key = f.read()
+f.close()
 
-    # Take message from stdin
-    message = bytearray((input().encode('utf-8')))
-    
-    # xor the input with the key to create the output
-    out = ''
-    for i in range(len(key)):
-        if (bool(key[i]) ^ bool(message[i])) == True:
-            out += '1'
-        else:
-            out += '0'
+# Read input
+message = sys.stdin.buffer.read()
 
-    output = bytearray((out.encode('utf-8')))
-    
-    # return the output to stdout
-    sys.stdout.buffer.write(output)
-    
-xor()
-    
+# Take message from stdin
+messageArray = bytearray(message)
+# Make keyArray
+keyArray = bytearray(key)
+
+
+# xor the input with the key to create the output
+output = []
+for i in range(len(messageArray)):
+    output.append(messageArray[i] ^ keyArray[i])
+
+
+# return the output to stdout
+sys.stdout.buffer.write(output)
