@@ -18,9 +18,9 @@ def toList(dataType, offset, file):
             byte_value = image.getpixel((x, y))
     
             if dataType == 'byte':
-                data.append(byte_value)
+                data.append(hex(byte_value))
             elif dataType == 'bit':
-                bit_value = format(byte_value, '08b')
+                bit_value = bin(byte_value)
                 data.append(bit_value)
 
         # reset x after first row
@@ -28,9 +28,9 @@ def toList(dataType, offset, file):
 
     # display data collected
     if dataType == 'byte':
-        print("byte after offset:", data[:10])
+        print(f"byte after offset: {data[:10]}")
     elif dataType == 'bit':
-        print("bit after offset:", data[:10])
+        print(f"bit after offset: {data[:10]}")
 
     return data
 
