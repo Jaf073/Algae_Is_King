@@ -13,12 +13,11 @@ messageArray = bytearray(message)
 # Make keyArray
 keyArray = bytearray(key)
 
-
 # xor the input with the key to create the output
-output = []
+initialoutput = bytearray()
 for i in range(len(messageArray)):
-    output.append(messageArray[i] ^ keyArray[i])
-
+    initialoutput.append(messageArray[i] ^ keyArray[i])
 
 # return the output to stdout
-sys.stdout.buffer.write(output)
+for i in initialoutput:
+    sys.stdout.buffer.write(int.to_bytes(i))
