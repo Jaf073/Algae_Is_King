@@ -17,11 +17,11 @@ def toList(dataType, offset, file):
         for x in range(startX if y == startY else 0, width):
             byte_value = image.getpixel((x, y))
     
-    if dataType == 'byte':
-        data.append(byte_value)
-    elif dataType == 'bit':
-        bit_value = format(byte_value, '08b')
-        data.append(bit_value)
+            if dataType == 'byte':
+                data.append(byte_value)
+            elif dataType == 'bit':
+                bit_value = format(byte_value, '08b')
+                data.append(bit_value)
 
         # reset x after first row
         startX = 0
