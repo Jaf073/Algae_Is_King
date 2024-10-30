@@ -19,7 +19,7 @@ import sys
 
 def toList(dataType, offset, file):
     # open image in grayscale
-    image = Image.open(file).convert("L")
+    image = Image.open(file)#.convert("L")
     width, height = image.size
     # set offset
     startY = offset // width
@@ -30,13 +30,21 @@ def toList(dataType, offset, file):
     # iterates over image
     for y in range(startY, height):
         for x in range(startX if y == startY else 0, width):
-            byte_value = image.getpixel((x, y))
-    
+            #byte_value = image.getpixel((x, y))
+            #get rgb value of pixel
+            R, G, B = image.getpixel((x, y))
+            
             if dataType == 'byte':
-                data.append(hex(byte_value))
+                #data.append(hex(byte_value))
+                data.append(hex(R))
+                data.append(hex(R))
+                data.append(hex(R))
+                
             elif dataType == 'bit':
-                bit_value = bin(byte_value)
-                data.append(bit_value)
+                #data.append(bin(byte_value))
+                data.append(bin(R))
+                data.append(bin(G))
+                data.append(bin(B))
 
         # reset x after first row
         startX = 0
