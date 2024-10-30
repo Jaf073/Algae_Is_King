@@ -1,21 +1,21 @@
-SENTINEL = [0x0, 0xFF, 0x0, 0x0, 0xFF, 0x0]
+from PIL import Image
+import sys
+
+SENTINEL_hex = [0x0, 0xFF, 0x0, 0x0, 0xFF, 0x0]
+SENTINEL_bin = [0b00000000, 0b11111111, 0b00000000, 0b00000000, 0b11111111, 0b00000000]
 
 def FIND(bits=[], interval=1):
     i=0
     ret = []
     for j in range(0,len(bits),interval):
         bit = bits[j]
-        if bit == SENTINEL[i]: #check if sentinal
+        if bit == SENTINEL_hex[i]: #check if sentinal
             i+=1
         else: #add message to list
             i = 0
         ret.append(bit)
-        if i == len(SENTINEL): return(ret[:len(ret)-len(SENTINEL)])
+        if i == len(SENTINEL_hex): return(ret[:len(ret)-len(SENTINEL_hex)])
     return(None)
-
-from PIL import Image
-import sys
-
 
 def toList(dataType, offset, file):
     # open image in grayscale
@@ -37,8 +37,8 @@ def toList(dataType, offset, file):
             if dataType == 'byte':
                 #data.append(hex(byte_value))
                 data.append(hex(R))
-                data.append(hex(R))
-                data.append(hex(R))
+                data.append(hex(G))
+                data.append(hex(B))
                 
             elif dataType == 'bit':
                 #data.append(bin(byte_value))
@@ -57,7 +57,6 @@ def toList(dataType, offset, file):
 
     return data
 
-
 def main():
     # takes command line arguments
     dataType = sys.argv[1]
@@ -65,7 +64,5 @@ def main():
     file = "stegged-bit.bmp"
 
     print(FIND(toList(dataType, offset, file)))
-
     
-
 main()
