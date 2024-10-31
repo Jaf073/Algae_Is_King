@@ -1,8 +1,8 @@
 from PIL import Image
 import sys
 
-SENTINEL_hex = [0x0, 0xFF, 0x0, 0x0, 0xFF, 0x0]
-SENTINEL_bin = [0b00000000, 0b11111111, 0b00000000, 0b00000000, 0b11111111, 0b00000000]
+SENTINEL_hex = [0, 0, 0, 0, 0, 0]
+SENTINEL_bin = [0, 1, 0, 0, 1, 0]
 
 def FIND(bits=[], interval=1):
     i=0
