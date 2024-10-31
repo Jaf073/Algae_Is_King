@@ -1,6 +1,22 @@
 from PIL import Image
 import sys
 
+SENTINEL_hex = [0x0, 0xFF, 0x0, 0x0, 0xFF, 0x0]
+SENTINEL_bin = [0b00000000, 0b11111111, 0b00000000, 0b00000000, 0b11111111, 0b00000000]
+
+def FIND(bits=[], interval=1):
+    i=0
+    ret = []
+    for j in range(0,len(bits),interval):
+        bit = bits[j]
+        if bit == SENTINEL_hex[i]: #check if sentinal
+            i+=1
+        else: #add message to list
+            i = 0
+        ret.append(bit)
+        if i == len(SENTINEL_hex): return(ret[:len(ret)-len(SENTINEL_hex)])
+    return(None)
+
 def steg(b, offset, file, channel='R'):
     # load image
     img = Image.open(file).convert('RGB')  # Convert to RGB mode
@@ -46,5 +62,7 @@ def main():
         data = steg(b, offset, file, channel='R')
     
     print(data)
+    print("finding Data: ")
+    print(FIND(data))
 
 main()
