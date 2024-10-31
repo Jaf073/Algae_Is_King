@@ -54,6 +54,12 @@ def steg(b, offset, file, channel='R'):
 
 def main():
     b = sys.argv[1]
+    '''
+    if '-b' in argv:
+        b = 'b'
+    elif '-B' in argv:
+        b = 'B'
+    '''
     file = 'stegged-bit.bmp'
     offset = 1024
     if b == "-b":
