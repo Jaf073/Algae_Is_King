@@ -3,23 +3,60 @@ import sys
 
 #default vals
 SENTINEL = [0, 1, 0, 0, 1, 0]
+SENTINEL_Byte = ['0x0', '0xff', '0x0', '0x0', '0xff', '0x0']
 s=True; b=True; offset=0; interval=1; w=''; h=''
 
+#Convert bits to bytes
+def toByte(data):
+    Some=""
+    count = 0
+    Bytes = []
+    
+    #make data % by 4
+    while len(data)%4 != 0:
+        data.append(0)
+    #print(data)
+    
+    for B in data:
+        Some += str(B)
+        count += 1
+        if count == 8:
+            #print(Some)
+            Bytes.append(hex(int(Some,2)))
+            Some = ""
+            count = 0
+    return(Bytes)
+
+#Find sentinel in list of bits/bytes
 def FIND(bits=[]):
     global s; global b; global offset; global interval; global w; global h
     ret = []
-    
-    for i in range(0, len(bits), interval):
-        bit = bits[j]
-        if bit == SENTINEL[i]:  # Check if sentinel
-            i += 1
-        else:  # Add message to list
-            i = 0
-        ret.append(bit)
-        if i == len(SENTINEL):
-            return ret[:len(ret) - len(SENTINEL)]
+    i=0
+
+    if b:
+        for j in range(0, len(bits), interval):
+            bit = bits[j]
+            if bit == SENTINEL[i]:  # Check if sentinel
+                i += 1
+            else:  # Add message to list
+                i = 0
+            ret.append(bit)
+            if i == len(SENTINEL):
+                return ret[:len(ret) - len(SENTINEL)]
+    else:
+        bits = toByte(bits)
+        for j in range(0, len(bits), interval):
+            bit = bits[j]
+            if bit == SENTINEL_Byte[i]:  # Check if sentinel
+                i += 1
+            else:  # Add message to list
+                i = 0
+            ret.append(bit)
+            if i == len(SENTINEL_Byte):
+                return ret[:len(ret) - len(SENTINEL_Byte)]
     return None
 
+#get bits from pixels in image
 def steg():
     global s; global b; global offset; global interval; global w; global h
     # Load image
@@ -56,6 +93,7 @@ def steg():
     else:
         return bits
 
+#get arguments from command line
 def update(): #update values of global variables
     global s; global b; global offset; global interval; global w; global h
     
@@ -88,8 +126,8 @@ def update(): #update values of global variables
         #([-h])
         elif '-h' in arg:
             h = arg[2:]
-    
-
+            
+#I wonder if anky is reading this code
 def main():
     data = steg()
     print("Data retrieved:", data)
