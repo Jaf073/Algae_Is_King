@@ -16,6 +16,8 @@ def storeByte(wrapper, hidden, offset, interval):
     for byte in SENTINEL:
         wrapper[offset] = byte
         offset += interval
+        
+    return(wrapper)
 
 # get bytes from image
 def retrieveByte(wrapper, offset, interval):
@@ -38,11 +40,12 @@ def retrieveByte(wrapper, offset, interval):
 
 # store hidden bits in image
 def storeBit(wrapper, hidden, offset):
-    for byte in hidden + SENTINEL:
+    for byte in hidden + SENTINEL: #combine hidden message and sentinel
         for bit in range(8):
-            wrapper[offset] &= 0b11111110
+            wrapper[offset] &= 0b11111110 #make sure msg is 8 bits
             wrapper[offset] |= (byte >> (7 - bit)) & 0b00000001
             offset += 1
+    return(wrapper)
 
 # get bits from image
 def retrieveBit(wrapper, offset):
