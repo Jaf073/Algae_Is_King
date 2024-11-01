@@ -1,46 +1,137 @@
 from PIL import Image
 import sys
 
+#default vals
+SENTINEL = [0, 1, 0, 0, 1, 0]
+SENTINEL_Byte = ['0x0', '0xff', '0x0', '0x0', '0xff', '0x0']
+s=True; b=True; offset=0; interval=1; w=''; h=''
 
-def toList(dataType, offset, file):
-    # open image in grayscale
-    image = Image.open(file).convert("L")
-    width, height = image.size
-    # set offset
-    startY = offset // width
-    startX = offset % width
-    data = []
-
-    # chatgpt helped with some of this
-    # iterates over image
-    for y in range(startY, height):
-        for x in range(startX if y == startY else 0, width):
-            byte_value = image.getpixel((x, y))
+#Convert bits to bytes
+def toByte(data):
+    Some=""
+    count = 0
+    Bytes = []
     
-            if dataType == 'byte':
-                data.append(hex(byte_value))
-            elif dataType == 'bit':
-                bit_value = bin(byte_value)
-                data.append(bit_value)
+    #make data % by 4
+    while len(data)%4 != 0:
+        data.append(0)
+    #print(data)
+    
+    for B in data:
+        Some += str(B)
+        count += 1
+        if count == 8:
+            #print(Some)
+            Bytes.append(hex(int(Some,2)))
+            Some = ""
+            count = 0
+    return(Bytes)
 
-        # reset x after first row
-        startX = 0
+#Find sentinel in list of bits/bytes
+def FIND(bits=[]):
+    global s; global b; global offset; global interval; global w; global h
+    ret = []
+    i=0
 
-    # display data collected
-    if dataType == 'byte':
-        print(f"byte after offset: {data[:10]}")
-    elif dataType == 'bit':
-        print(f"bit after offset: {data[:10]}")
+    if b:
+        for j in range(0, len(bits), interval):
+            bit = bits[j]
+            if bit == SENTINEL[i]:  # Check if sentinel
+                i += 1
+            else:  # Add message to list
+                i = 0
+            ret.append(bit)
+            if i == len(SENTINEL):
+                return ret[:len(ret) - len(SENTINEL)]
+    else:
+        bits = toByte(bits)
+        for j in range(0, len(bits), interval):
+            bit = bits[j]
+            if bit == SENTINEL_Byte[i]:  # Check if sentinel
+                i += 1
+            else:  # Add message to list
+                i = 0
+            ret.append(bit)
+            if i == len(SENTINEL_Byte):
+                return ret[:len(ret) - len(SENTINEL_Byte)]
+    return None
 
-    return data
+#get bits from pixels in image
+def steg():
+    global s; global b; global offset; global interval; global w; global h
+    # Load image
+    img = Image.open(w).convert('RGB')  # Convert to RGB mode
+    
+    # Calculate pixels in image and offset
+    totalPixels = img.width * img.height
+    if offset >= totalPixels:
+        raise ValueError("offset too large")
+    
+    # Determine channel
+    channelIndex = {'R': 0, 'G': 1, 'B': 2}.get(channel.upper())
+   
+    bits = []
+    # Get LSBs
+    if b:
+        for i in range(offset, totalPixels):
+            x = i % img.width
+            y = i // img.width
+            pixel = img.getpixel((x, y))
+            lsb = pixel[channelIndex] & 1
+            bits.append(lsb)
+    
+    else:
+        # Convert to bytes
+        bytes_list = []
+        for i in range(0, len(bits), 8):
+            byte_chunk = bits[i:i+8]
+            if len(byte_chunk) < 8:
+                byte_chunk += [0] * (8 - len(byte_chunk))
+            byte_value = sum(bit << (7 - j) for j, bit in enumerate(byte_chunk))
+            bytes_list.append(byte_value)
+        return bytes(bytes_list)
+    else:
+        return bits
 
+#get arguments from command line
+def update(): #update values of global variables
+    global s; global b; global offset; global interval; global w; global h
+    
+    for arg in sys.argv:
+        print(arg)
+        #(-sr)
+        if arg == "-s":
+            s = True
+        elif arg == "-r":
+            s = False
+            
+        #(-bB)
+        elif arg == '-b':
+            b = True
+        elif arg == '-B':
+            b = False
+        
+        #(-o)
+        elif '-o' in arg:
+            offset = int(arg[2:])
 
+        #([-i])
+        elif '-i' in arg:
+            interval = int(arg[2:])
+
+        #(-w)
+        elif '-w' in arg:
+            w = arg[2:]
+
+        #([-h])
+        elif '-h' in arg:
+            h = arg[2:]
+            
+#I wonder if anky is reading this code
 def main():
-    # takes command line arguments
-    dataType = sys.argv[1]
-    offset = int(sys.argv[2])
-    file = "stegged-bit.bmp"
-
-    toList(dataType, offset, file)
+    data = steg()
+    print("Data retrieved:", data)
+    print("Finding Data:")
+    print(FIND(data))
 
 main()
