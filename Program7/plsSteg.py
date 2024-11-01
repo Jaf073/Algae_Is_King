@@ -1,7 +1,8 @@
 from PIL import Image
 import argparse
 
-SENTINEL_bin = [0, 1, 0, 0, 1, 0]  # Sentinel sequence in bits
+# Sentinel sequence in bits
+SENTINEL_bin = [0, 1, 0, 0, 1, 0]
 
 def FIND(data, interval=1, mode="bit"):
     i = 0
@@ -9,8 +10,8 @@ def FIND(data, interval=1, mode="bit"):
 
     if mode == "bit":
         sentinel = SENTINEL_bin
-    else:  # Convert sentinel to bytes for byte mode
-        sentinel = [sum(SENTINEL_bin[j] << (7 - j) for j in range(8))]
+    else:  # Convert sentinel to a single byte for byte mode
+        sentinel = [sum(SENTINEL_bin[j] << (7 - j) for j in range(6))]
 
     for j in range(0, len(data), interval):
         element = data[j]
@@ -45,12 +46,12 @@ def steg(mode, offset, file, channel='R'):
         bits.append(lsb)
     
     if mode == "-B":
-        # Convert bits to bytes
+        # Convert bits to bytes with padding for any remaining bits
         bytes_list = []
         for i in range(0, len(bits), 8):
             byte_chunk = bits[i:i+8]
             if len(byte_chunk) < 8:
-                byte_chunk += [0] * (8 - len(byte_chunk))
+                byte_chunk += [0] * (8 - len(byte_chunk))  # Pad with 0s if incomplete
             byte_value = sum(bit << (7 - j) for j, bit in enumerate(byte_chunk))
             bytes_list.append(byte_value)
         return bytes_list
@@ -89,4 +90,3 @@ def main():
         print(FIND(data, interval, mode="byte" if mode == "-B" else "bit"))
 
 main()
-
