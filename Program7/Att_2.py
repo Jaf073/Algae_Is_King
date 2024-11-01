@@ -40,7 +40,7 @@ def main():
         binary_data = file.read()
         array = bytearray(binary_data)
 
-    print(array[offset:5000])
+    #Warning: this returns like 82,000 line print(array)
     print(FIND(array[offset:]))
 
 main()
