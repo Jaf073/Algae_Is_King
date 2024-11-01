@@ -70,7 +70,7 @@ def main():
     parser.add_argument("-o", type=int, default=0, help="Offset (default 0)")
     parser.add_argument("-i", type=int, default=1, help="Interval (default 1)")
     parser.add_argument("-w", required=True, help="Wrapper file")
-    #parser.add_argument("-h", help="Hidden file")
+    parser.add_argument("-H", required=False, help="Hidden file")
 
     args = parser.parse_args()
 
