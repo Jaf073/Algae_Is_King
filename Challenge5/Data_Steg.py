@@ -3,7 +3,7 @@ import sys
 #default vals
 SENTINEL = [0, 1, 0, 0, 1, 0]
 SENTINEL_Byte = [0, 255, 0, 0, 255, 0]
-s=True; b=False; offset=2048; interval=1; w=''; h=''
+s=True; b=False; offset=2048; interval=8; w=''; h=''
 
 def bitstring_to_bytes(s):
     v = int(s, 2)
