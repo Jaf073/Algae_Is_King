@@ -1,26 +1,29 @@
 from PIL import Image
-import argparse
+import sys
 
-SENTINEL_hex = [0, 0, 0, 0, 0, 0]
-SENTINEL_bin = [0, 1, 0, 0, 1, 0]
+#default vals
+SENTINEL = [0, 1, 0, 0, 1, 0]
+s=True; b=True; offset=0; interval=1; w=''; h=''
 
-def FIND(bits=[], interval=1):
-    i = 0
+def FIND(bits=[]):
+    global s; global b; global offset; global interval; global w; global h
     ret = []
+    
     for j in range(0, len(bits), interval):
         bit = bits[j]
-        if bit == SENTINEL_hex[i]:  # Check if sentinel
+        if bit == SENTINEL[i]:  # Check if sentinel
             i += 1
         else:  # Add message to list
             i = 0
         ret.append(bit)
-        if i == len(SENTINEL_hex):
-            return ret[:len(ret) - len(SENTINEL_hex)]
+        if i == len(SENTINEL):
+            return ret[:len(ret) - len(SENTINEL)]
     return None
 
-def steg(b, offset, file, channel='R'):
+def steg():
+    global s; global b; global offset; global interval; global w; global h
     # Load image
-    img = Image.open(file).convert('RGB')  # Convert to RGB mode
+    img = Image.open(w).convert('RGB')  # Convert to RGB mode
     
     # Calculate pixels in image and offset
     totalPixels = img.width * img.height
@@ -32,7 +35,7 @@ def steg(b, offset, file, channel='R'):
    
     bits = []
     # Get LSBs
-    if b == "-b":
+    if b:
         for i in range(offset, totalPixels):
             x = i % img.width
             y = i // img.width
@@ -40,7 +43,7 @@ def steg(b, offset, file, channel='R'):
             lsb = pixel[channelIndex] & 1
             bits.append(lsb)
     
-    if b == "-B":
+    else:
         # Convert to bytes
         bytes_list = []
         for i in range(0, len(bits), 8):
@@ -53,39 +56,44 @@ def steg(b, offset, file, channel='R'):
     else:
         return bits
 
+def update(): #update values of global variables
+    global s; global b; global offset; global interval; global w; global h
+    
+    for arg in sys.argv:
+        print(arg)
+        #(-sr)
+        if arg == "-s":
+            s = True
+        elif arg == "-r":
+            s = False
+            
+        #(-bB)
+        elif arg == '-b':
+            b = True
+        elif arg == '-B':
+            b = False
+        
+        #(-o)
+        elif '-o' in arg:
+            offset = int(arg[2:])
+
+        #([-i])
+        elif '-i' in arg:
+            interval = int(arg[2:])
+
+        #(-w)
+        elif '-w' in arg:
+            w = arg[2:]
+
+        #([-h])
+        elif '-h' in arg:
+            h = arg[2:]
+    
+
 def main():
-    parser = argparse.ArgumentParser(description="Steganography tool using LSB extraction")
-    
-    # Define positional and optional arguments
-    parser.add_argument("-s", "--store", action="store_true", help="Store data")
-    parser.add_argument("-r", "--retrieve", action="store_true", help="Retrieve data")
-    parser.add_argument("-b", action="store_true", help="Bit mode")
-    parser.add_argument("-B", action="store_true", help="Byte mode")
-    parser.add_argument("-o", "--offset", type=int, default=0, help="Set offset (default: 0)")
-    parser.add_argument("-i", "--interval", type=int, default=1, help="Set interval (default: 1)")
-    parser.add_argument("-w", "--wrapper", required=True, help="Set wrapper file")
-
-    args = parser.parse_args()
-    
-    # Validate mode and bit/byte flags
-    if not (args.store or args.retrieve):
-        parser.error("One of -s (store) or -r (retrieve) must be specified.")
-    if not (args.b or args.B):
-        parser.error("One of -b (bit mode) or -B (byte mode) must be specified.")
-    
-    # Validate hidden file requirement only if storing
-    if args.store and not args.hidden:
-        parser.error("The -s (store) mode requires -h (hidden file) to be specified.")
-
-    mode = "-b" if args.b else "-B"
-    offset = args.offset
-    interval = args.interval
-    wrapper_file = args.wrapper
-
-    if args.retrieve:
-        data = steg(mode, offset, wrapper_file, channel='R')
-        print("Data retrieved:", data)
-        print("Finding Data:")
-        print(FIND(data, interval))
+    data = steg()
+    print("Data retrieved:", data)
+    print("Finding Data:")
+    print(FIND(data))
 
 main()
