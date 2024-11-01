@@ -9,7 +9,7 @@ def FIND(bits=[]):
     global s; global b; global offset; global interval; global w; global h
     ret = []
     
-    for j in range(0, len(bits), interval):
+    for i in range(0, len(bits), interval):
         bit = bits[j]
         if bit == SENTINEL[i]:  # Check if sentinel
             i += 1
