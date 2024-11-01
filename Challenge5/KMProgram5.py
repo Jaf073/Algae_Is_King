@@ -18,7 +18,7 @@ def timeToSeconds(input):
 
 # constants
 DEBUG = False
-MANUAL_CURRENT_TIME = True
+MANUAL_CURRENT_TIME = False
 CURRENT_TIME = (int)(time.time())
 EPOCH = (sys.stdin.read())
 EPOCH = EPOCH.strip() #removes newline character
@@ -92,6 +92,10 @@ for character in reverseHashed2:
         count += 1
     if (count == 2):
         break
+
+# finding the middle character of the final has
+code += hashed2[int(len(hashed2) / 2)]
+
 
 # printing the final code
 print(code)
