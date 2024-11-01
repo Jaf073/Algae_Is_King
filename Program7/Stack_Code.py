@@ -1,21 +1,24 @@
 import argparse
 import sys
 
-# Define sentinel
+# sentinel to look for
 SENTINEL = bytearray([0x00, 0xff, 0x00, 0x00, 0xff, 0x00])
 
-def store_byte_method(wrapper, hidden, offset, interval):
+# storing hidden bytes in image
+def storeByte(wrapper, hidden, offset, interval):
     i = 0
     while i < len(hidden):
         wrapper[offset] = hidden[i]
         offset += interval
         i += 1
 
+    # hides sentinel in message
     for byte in SENTINEL:
         wrapper[offset] = byte
         offset += interval
 
-def retrieve_byte_method(wrapper, offset, interval):
+# get bytes from image
+def retrieveByte(wrapper, offset, interval):
     hidden = bytearray()
     sentinel_index = 0
 
@@ -33,14 +36,16 @@ def retrieve_byte_method(wrapper, offset, interval):
 
     return hidden[:-len(SENTINEL)]
 
-def store_bit_method(wrapper, hidden, offset):
+# store hidden bits in image
+def storeBit(wrapper, hidden, offset):
     for byte in hidden + SENTINEL:
         for bit in range(8):
             wrapper[offset] &= 0b11111110
             wrapper[offset] |= (byte >> (7 - bit)) & 0b00000001
             offset += 1
 
-def retrieve_bit_method(wrapper, offset):
+# get bits from image
+def retrieveBit(wrapper, offset):
     hidden = bytearray()
     sentinel_index = 0
 
@@ -62,6 +67,8 @@ def retrieve_bit_method(wrapper, offset):
     return hidden
 
 def main():
+    # get arguments from command line
+    # chatgpt helped here
     parser = argparse.ArgumentParser()
     parser.add_argument("-s", action="store_true", help="Store data")
     parser.add_argument("-r", action="store_true", help="Retrieve data")
@@ -74,22 +81,28 @@ def main():
 
     args = parser.parse_args()
 
+    # opens file and get bytes
     with open(args.w, "rb") as f:
         wrapper = bytearray(f.read())
 
+    # if store then it stores bytes or bits
     if args.s:
         with open(args.h, "rb") as f:
             hidden = bytearray(f.read())
-        if args.B:
-            store_byte_method(wrapper, hidden, args.o, args.i)
-        elif args.b:
-            store_bit_method(wrapper, hidden, args.o)
+        if args.B: # bytes
+            storeByte(wrapper, hidden, args.o, args.i)
+        elif args.b: # bits
+            storeBit(wrapper, hidden, args.o)
+        # output new file
         sys.stdout.buffer.write(wrapper)
 
+    # retrieve data
     elif args.r:
-        if args.B:
-            hidden = retrieve_byte_method(wrapper, args.o, args.i)
-        elif args.b:
-            hidden = retrieve_bit_method(wrapper, args.o)
+        if args.B: # bytes
+            hidden = retrieveByte(wrapper, args.o, args.i)
+        elif args.b: # bits
+            hidden = retrieveBit(wrapper, args.o)
+        # output retrieved data
         sys.stdout.buffer.write(hidden)
+
 main()
