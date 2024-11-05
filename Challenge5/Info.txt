@@ -22,6 +22,9 @@ Epoch time = 2019 05 08 10 00 00
 IP = 138.47.99.228
 output of edited Program 5 = gives us password
 
+Hayden Contribution:
+	I found the password for the zip file by running it through a site on the internet. I modified program 5 in order to get the ftp password
+
 Epoch time = 2019 05 08 10 00 00
 IP = 138.47.99.228
 output of edited Program 5 = gives us password
