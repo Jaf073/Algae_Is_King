@@ -16,3 +16,5 @@ Used steg program to on new.jpg "python3 Steg_01.py -r -B -2048 -i8 -w output.jf
 
 
 Gabe Contribution: Once Rupp gave us the password to the zip file I decoded the files using base64 for the IP address. Once we used program 5 to get the IP password I logged into the ftp server, found the files we needed, and used the get command on them to download them to my virtual machine. I also helped a little bit in writing the steg program that we used to find the final hidden message.
+
+Tommy Contribution: Decoded the the file names to get the IP address and Epoch time, but I know I was not the only one who did this step. After that I logged into the ftp server the grabbed the key and cipher files.
