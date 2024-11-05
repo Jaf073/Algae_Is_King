@@ -54,20 +54,20 @@ def retrieveBit(wrapper, offset):
 
     while offset < len(wrapper):
         byte = 0
-        for bit in range(8):
+        for bit in range(8): #Honestly no clue if this works but it doesnt follow the byte method i think -JF
             byte = (byte << 1) | (wrapper[offset] & 0b00000001)
             offset += 1
 
         hidden.append(byte)
 
-        if byte == SENTINEL[sentinel_index]:
+        if byte == SENTINEL[sentinel_index]: #isnt the sentinal in binary for this one? -JF
             sentinel_index += 1
-            if sentinel_index == len(SENTINEL):
+            if sentinel_index == len(SENTINEL): #This can cause the msg to end early, see John's Checker -JF
                 return hidden[:-len(SENTINEL)]
         else:
             sentinel_index = 0
 
-    return hidden
+    return hidden #Why is the return different than the Byte method? -JF
 
 def main():
     # get arguments from command line
