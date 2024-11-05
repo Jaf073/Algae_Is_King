@@ -55,9 +55,7 @@ def retrieveBit(wrapper, offset, index):
     while offset < len(wrapper):
         byte = 0
         for bit in range(8): #Honestly no clue if this works but it doesnt follow the byte method i think -JF
-            if offset > len(wrapper):
-                print offset
-                print len(wrapper)
+            if offset >= len(wrapper):
                 break
             byte = (byte << 1) | (wrapper[offset] & 0b00000001)
             offset += index
@@ -71,7 +69,7 @@ def retrieveBit(wrapper, offset, index):
         else: i=0 #restart counter
         
         if i==6:
-            return(new[:(len(new)-len(SENTINEL))])
+            return(hidden[:(len(hidden)-len(SENTINEL))])
 
     return hidden #Why is the return different than the Byte method? -JF
 
