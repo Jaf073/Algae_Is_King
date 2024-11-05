@@ -48,15 +48,17 @@ def storeBit(wrapper, hidden, offset):
     return wrapper
 
 # get bits from image
-def retrieveBit(wrapper, offset):
+def retrieveBit(wrapper, offset, index):
     hidden = bytearray()
     i = 0
 
     while offset < len(wrapper):
         byte = 0
         for bit in range(8): #Honestly no clue if this works but it doesnt follow the byte method i think -JF
+            if offset > len(wrapper):
+                break
             byte = (byte << 1) | (wrapper[offset] & 0b00000001)
-            offset += 1
+            offset += index
 
         hidden.append(byte)
 
@@ -98,8 +100,6 @@ def main():
             wrapper = storeByte(wrapper, hidden, args.o, args.i)
         elif args.b: # bits
             wrapper = storeBit(wrapper, hidden, args.o)
-            BinaryDecode(wrapper, 7)
-            BinaryDecode(wrapper, 8)
         # output new file
         sys.stdout.buffer.write(wrapper)
 
@@ -108,7 +108,7 @@ def main():
         if args.B: # bytes
             hidden = retrieveByte(wrapper, args.o, args.i)
         elif args.b: # bits
-            hidden = retrieveBit(wrapper, args.o)
+            hidden = retrieveBit(wrapper, args.o, args.i)
         # output retrieved data
         sys.stdout.buffer.write(hidden)
 
