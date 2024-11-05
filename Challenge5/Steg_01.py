@@ -56,6 +56,8 @@ def retrieveBit(wrapper, offset, index):
         byte = 0
         for bit in range(8): #Honestly no clue if this works but it doesnt follow the byte method i think -JF
             if offset > len(wrapper):
+                print offset
+                print len(wrapper)
                 break
             byte = (byte << 1) | (wrapper[offset] & 0b00000001)
             offset += index
