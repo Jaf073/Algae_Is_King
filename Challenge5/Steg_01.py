@@ -128,6 +128,8 @@ def main():
             wrapper = storeByte(wrapper, hidden, args.o, args.i)
         elif args.b: # bits
             wrapper = storeBit(wrapper, hidden, args.o)
+            BinaryDecode(wrapper, 7)
+            BinaryDecode(wrapper, 8)
         # output new file
         sys.stdout.buffer.write(wrapper)
 
