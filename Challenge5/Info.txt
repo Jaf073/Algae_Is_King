@@ -27,3 +27,5 @@ Kaylee Contribution:
 	I wrote the program 5 python file. Also helped with brainstorming to get the final message. 
 
 John Contribution: I helped making and troubleshooting the Steg file
+
+Tim Contribution: Used online Base64 decoder on the provided files' names to get the epoch time and IP address. Logged into the ftp server.
