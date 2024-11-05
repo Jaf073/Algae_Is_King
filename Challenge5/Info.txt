@@ -18,3 +18,26 @@ Used steg program to on new.jpg "python3 Steg_01.py -r -B -2048 -i8 -w output.jf
 Gabe Contribution: Once Rupp gave us the password to the zip file I decoded the files using base64 for the IP address. Once we used program 5 to get the IP password I logged into the ftp server, found the files we needed, and used the get command on them to download them to my virtual machine. I also helped a little bit in writing the steg program that we used to find the final hidden message.
 
 Tommy Contribution: Decoded the the file names to get the IP address and Epoch time, but I know I was not the only one who did this step. After that I logged into the ftp server the grabbed the key and cipher files.
+Epoch time = 2019 05 08 10 00 00
+IP = 138.47.99.228
+output of edited Program 5 = gives us password
+
+Epoch time = 2019 05 08 10 00 00
+IP = 138.47.99.228
+output of edited Program 5 = gives us password
+
+Downloaded provided zip file
+Cracked zip file password by passing it through a website (password = passw0rd)
+Decoded the two gibberish file names using base 64 -> gave us Epoch time and IP
+Used modified program 5 with epoc time and local machine time to get IP password
+Logged into ftp server and grabbed the two files we needed
+Used XOR program to decode the cipher file giving us output.jfif (life alert bracelet image)
+Used steg program to on new.jpg "python3 Steg_01.py -r -B -2048 -i8 -w output.jfif > new.jpg giving us cyber image
+Steg: python3 Steg_01.py -r -b -o513 -i2 -w output.jfif > constitution.txt to give us the constitution
+
+
+Gabe Contribution: Once Rupp gave us the password to the zip file I decoded the files using base64 for the IP address. Once we used program 5 to get the IP password I logged into the ftp server, found the files we needed, and used the get command on them to download them to my virtual machine. I also helped a little bit in writing the steg program that we used to find the final hidden message.
+
+Tommy Contribution: Decoded the the file names to get the IP address and Epoch time, but I know I was not the only one who did this step. After that I logged into the ftp server the grabbed the key and cipher files.
+
+Andrew Contribution: Ran the XOR and Steg programs
