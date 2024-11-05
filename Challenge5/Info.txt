@@ -2,4 +2,14 @@ Epoch time = 2019 05 08 10 00 00
 IP = 138.47.99.228
 output of edited Program 5 = gives us password
 
+Epoch time = 2019 05 08 10 00 00
+IP = 138.47.99.228
+output of edited Program 5 = gives us password
 
+Downloaded provided zip file
+Cracked zip file password by passing it through a website (password = passw0rd)
+Decoded the two gibberish file names using base 64 -> gave us Epoch time and IP
+Used modified program 5 with epoc time and local machine time to get IP password
+Logged into ftp server and grabbed the two files we needed
+Used XOR program to decode the cipher file giving us output.jfif (life alert bracelet image)
+Used steg program to on new.jpg "python3 Steg_01.py -r -B -2048 -i8 -w output.jfif > new.jpg giving us cyber image
