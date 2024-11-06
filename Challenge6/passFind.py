@@ -92,7 +92,7 @@ for character in reverseHashed2:
         count += 1
     if (count == 2):
         break
-code += hashed[len(hashed) - 1]
+code += hashed[len(hashed2) - 1]
 # printing the final code
 print(code)
 print(hashed2)
