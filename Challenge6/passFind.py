@@ -95,5 +95,5 @@ for character in reverseHashed2:
 code += hashed[len(hashed) - 1]
 # printing the final code
 print(code)
-print(hashed)
+print(hashed2)
 
