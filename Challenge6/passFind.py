@@ -18,7 +18,7 @@ def timeToSeconds(input):
 
 # constants
 DEBUG = False
-MANUAL_CURRENT_TIME = True
+MANUAL_CURRENT_TIME = False
 CURRENT_TIME = (int)(time.time())
 EPOCH = (sys.stdin.read())
 EPOCH = EPOCH.strip() #removes newline character
