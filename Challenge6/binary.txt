@@ -1,0 +1,2 @@
+FTP at 138.47.99.228 - port 21 - user is salt - pass is saltXXXXY - where XXXX is a TimeLock code 
+and Y is the last character of the final TimeLock hash - TimeLock epoch is 2023-11-03 00:00:00 - sync your time using telnet or netcat on port 54321
