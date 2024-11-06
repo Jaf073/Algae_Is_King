@@ -11,7 +11,7 @@ Logged into ftp server and grabbed the two files we needed
 Used XOR program to decode the cipher file giving us output.jfif (life alert bracelet image)
 Used steg program to on new.jpg "python3 Steg_01.py -r -B -2048 -i8 -w output.jfif > new.jpg giving us cyber image
 Steg: python3 Steg_01.py -r -b -o513 -i2 -w output.jfif > constitution.txt to give us the constitution
-Incomplete secret passphrase with: python3 Steg_01.py -r -B -o32 -i64 -w constitution.txt > secretmessage.txt
+Found secret passphrase with: python3 Steg_01.py -r -B -o32 -i64 -w constitution.txt > secretmessage.txt
 
 
 Gabe Contribution: Once Rupp gave us the password to the zip file I decoded the files using base64 for the IP address. Once we used program 5 to get the IP password I logged into the ftp server, found the files we needed, and used the get command on them to download them to my virtual machine. I also helped a little bit in writing the steg program that we used to find the final hidden message.
@@ -27,3 +27,5 @@ Kaylee Contribution:
 	I wrote the program 5 python file. Also helped with brainstorming to get the final message. 
 
 John Contribution: I helped making and troubleshooting the Steg file
+
+Tim Contribution: Used online Base64 decoder on the provided files' names to get the epoch time and IP address. Logged into the ftp server.
