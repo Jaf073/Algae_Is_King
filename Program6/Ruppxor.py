@@ -1,7 +1,7 @@
 import sys
 
 # Read key from key file as bineary
-f = open('key2-1', 'rb')
+f = open('key', 'rb')
 key = f.read()
 f.close()
 
