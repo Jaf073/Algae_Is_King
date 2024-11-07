@@ -1,0 +1,1 @@
+Converted binary page to ascii. Pulled pictures from FTP. Got the current system time to use using Telnet.
