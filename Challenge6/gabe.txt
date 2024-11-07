@@ -1,0 +1,1 @@
+I first got the epoch time from doing telnet on the IP address and port given from the binary we were given on paper. Using that we got the password for the ftp where I then logged in and tried to get the files needed for the rest of the code. We then used our steg code in order to decipher the bmp files we got from the ftp server.
