@@ -1,0 +1,10 @@
+Each pixel of a PNG image is composed of an R,G,B component.
+
+We suggest XOR'ing the R,G,B of each pixel in the provided noisy image with a key.
+
+"A key?" you say!  Perhaps it's encoded in binary.  A-ha!
+
+Hopefully you can progress far enough to have a valid "key" for each pixel in the image...
+
+
+
